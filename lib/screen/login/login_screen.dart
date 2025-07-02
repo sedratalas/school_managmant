@@ -19,8 +19,8 @@ class LoginScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final ScreenWidth = MediaQuery.sizeOf(context).width;
     final ScreenHeight = MediaQuery.sizeOf(context).height;
-    TextEditingController emailController = TextEditingController(text: "Syalfreelance@gmail.com");
-    TextEditingController passwordController = TextEditingController(text: "password123");
+    TextEditingController emailController = TextEditingController();
+    TextEditingController passwordController = TextEditingController();
 
     return Scaffold(
       backgroundColor: const Color(0xFF90A38A),
@@ -68,7 +68,7 @@ class LoginScreen extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: const [
                         Text(
-                          "Hi Student",
+                          "Hi Admin",
                           style: TextStyle(
                             color: Colors.white,
                             fontSize: 28,

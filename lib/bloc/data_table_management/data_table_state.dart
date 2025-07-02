@@ -1,98 +1,108 @@
 import 'package:equatable/equatable.dart';
 
 abstract class DataTableState extends Equatable {
+  final List<dynamic> data;
+  final String currentType;
+  final bool isLoading;
+  final String? message;
+
+  const DataTableState({
+    this.data = const [],
+    this.currentType = "student",
+    this.isLoading = false,
+    this.message,
+  });
+
   @override
-  List<Object?> get props => [];
+  List<Object?> get props => [data, currentType, isLoading, message];
 }
 
-class DataTableInitial extends DataTableState {}
+class DataTableInitial extends DataTableState {
+  const DataTableInitial() : super();
+}
 
 class DataTableLoading extends DataTableState {
-  final String currentType;
-
-  DataTableLoading({required this.currentType});
-
-  @override
-  List<Object?> get props => [currentType];
+  const DataTableLoading({
+    super.data,
+    required super.currentType,
+  }) : super(
+    isLoading: true,
+  );
 }
 
 class DataTableLoaded extends DataTableState {
-  final List<dynamic> data;
-  final String currentType;
-
-  DataTableLoaded({required this.data, required this.currentType});
-
-  @override
-  List<Object?> get props => [data, currentType];
+  const DataTableLoaded({
+    required super.data,
+    required super.currentType,
+  }) : super(
+    isLoading: false,
+  );
 }
 
 class DataTableError extends DataTableState {
-  final String message;
-  final String currentType;
-
-  DataTableError({required this.message, required this.currentType});
-
-  @override
-  List<Object?> get props => [message, currentType];
+  const DataTableError({
+    super.data,
+    required super.message,
+    required super.currentType,
+  }) : super(
+    isLoading: false,
+  );
 }
 
 class DataUpdating extends DataTableState {
-  final List<dynamic> currentData;
-  final String currentType;
-
-  DataUpdating({required this.currentData, required this.currentType});
-
-  @override
-  List<Object?> get props => [currentData, currentType];
+  const DataUpdating({
+    required super.data,
+    required super.currentType,
+  }) : super(
+    isLoading: true,
+  );
 }
 
 class DataUpdateSuccess extends DataTableState {
-  final List<dynamic> updatedData;
-  final String currentType;
-  final String message;
-
-  DataUpdateSuccess({required this.updatedData, required this.currentType, required this.message});
-
-  @override
-  List<Object?> get props => [updatedData, currentType, message];
+  const DataUpdateSuccess({
+    required super.data,
+    required super.currentType,
+    required super.message,
+  }) : super(
+    isLoading: false,
+  );
 }
 
 class DataUpdateFailure extends DataTableState {
-  final List<dynamic> currentData;
-  final String currentType;
-  final String message;
-
-  DataUpdateFailure({required this.currentData, required this.currentType, required this.message});
-
-  @override
-  List<Object?> get props => [currentData, currentType, message];
+  const DataUpdateFailure({
+    required super.data,
+    required super.currentType,
+    required super.message,
+  }) : super(
+    isLoading: false,
+  );
 }
 
 class DataAdding extends DataTableState {
-  final String currentType;
-
-  DataAdding({required this.currentType});
-
-  @override
-  List<Object?> get props => [currentType];
+  const DataAdding({
+    super.data,
+    required super.currentType,
+  }) : super(
+    isLoading: true,
+  );
 }
 
 class DataAddSuccess extends DataTableState {
-  final String currentType;
-  final String message;
-
-  DataAddSuccess({required this.currentType, required this.message});
-
-  @override
-  List<Object?> get props => [currentType, message];
+  const DataAddSuccess({
+    super.data,
+    required super.currentType,
+    required super.message,
+  }) : super(
+    isLoading: false,
+  );
 }
 
 class DataAddFailure extends DataTableState {
-  final String currentType;
-  final String message;
-
-  DataAddFailure({required this.currentType, required this.message});
-
-  @override
-  List<Object?> get props => [currentType, message];
+  const DataAddFailure({
+    super.data,
+    required super.currentType,
+    required super.message,
+  }) : super(
+    isLoading: false,
+  );
 }
